@@ -1,20 +1,37 @@
+from flask import Flask, jsonify, abort, make_response
 import sqlite3
 
-# Kapcsolódás az SQLite adatbázishoz
-conn = sqlite3.connect('dineease.db')
+app = Flask(__name__)
 
-# Kurzor objektum létrehozása a cursor() metódussal
-cursor = conn.cursor()
+def get_db_connection():
+    conn = sqlite3.connect('dineease.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
-# SQL lekérdezés az email, lastName, és firstName kiválasztására a users táblából
-query = "SELECT email, lastName, firstName FROM users"
+@app.route('/test', methods=['GET'])
+def test():
+    return "Hello World!"
 
-# SQL parancs végrehajtása
-cursor.execute(query)
+@app.route('/users', methods=['GET'])
+def get_users():
+    conn = get_db_connection()
+    users = conn.execute('SELECT id, firstName, lastName, email, isActive FROM users').fetchall()
+    conn.close()
+    return jsonify([dict(user) for user in users])
 
-# Az összes sor lekérdezése és kiírása
-for row in cursor.fetchall():
-    print(f"Email: {row[0]}, Vezetéknév: {row[1]}, Keresztnév: {row[2]}")
+@app.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    conn = get_db_connection()
+    user = conn.execute('SELECT id, firstName, lastName, email, isActive FROM users WHERE id = ?',
+                        (user_id,)).fetchone()
+    conn.close()
+    if user is None:
+        return make_response(jsonify({'message': 'User not found'}), 404)
+    return jsonify(dict(user))
 
-# Kapcsolat bezárása
-conn.close()
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'message': 'Not found'}), 404)
+
+if __name__ == '__main__':
+    app.run(debug=True)
