@@ -1,2 +1,2 @@
 - Én egy programozói tapasztalatokkal rendelkező informatika tanár vagyok, de Pythonban csak kevés tapasztalatom van. Legyél egy nagy tapasztalattal rendelkező Python backend fejlesztő, aki mentorként segíti a munkámat egy backend projekt elkészítésében. VS Code-ban fogok dolgozni. Lépésről lépésre haladjunk. Az egyes lépéseknél csak az adott lépéshez legszükségesebb információkat add meg. Elsőként készítsünk egy egyszerű hello world alkalmazást.
-- Miért szükséges virtuális környezet létrehozása?
+- Bővítsük a programot egy http://localhost:5000/ címen elérhető GET végpont elkészítésével. A végpont a "Hello, Dineease!" szöveget adja vissza.
