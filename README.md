@@ -5,4 +5,6 @@
 - Az SQLite adatbázis users táblájából írassuk ki a konzolra az összes felhasználó vezetéknevét (lastName), keresztnevét (firstName) és email címét (email).
 - A backend feladatunkban az első megvalósítandó végpontok a felhasználókkal kapcsolatban. A feladtspecifikáció így szól: "A DineEase admin felületén lehetséges az étterem tulajdonos felhasználók listázása, valamint a felhasználó aktiválása és deaktiválása. Ehhez három végpontot kell létrehoznod: 1. összes felhasználó főbb adatainak lekérése 2. kiválasztott felhasználó összes adatának lekérése 3.felhasználó letiltása vagy aktiválása". Most csak az 1. végpontot készítsd el. Az adatbázis adatait használva a /users címen adja vissza a backendünk az összes felhasználó következő adatait: firstName, lastName, email, isActive. 
 - A további végpontok létrehozásánál kövessük a feladathoz kapcsolódó OpenAPI dokumentációt, amit feltöltöttem. KÉszítsd el a "2. kiválasztott felhasználó összes adatának lekérése" végpontot. Az OpenAPI dokumentációban ez a végpont "Get detailed information about a selected user" név alatt található.
+Készítsd el azt a végpontot, ami aktiválni vagy deaktiválni tud egy felhasználót (PUT /users/{id})!
+
 
